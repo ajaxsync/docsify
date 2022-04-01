@@ -165,11 +165,11 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 ```
-* 你需要在 ./docs 目录下创建一个 .nojekyll 文件，以防止 GitHub Pages 忽略下划线开头的文件。
+* 你需要在`./docs`目录下创建一个`.nojekyll`文件，以防止`GitHub Pages`忽略下划线开头的文件。
 
 #### 嵌套
 * 如果导航内容过多，可以写成嵌套的列表，会被渲染成下拉列表的形式。
-```
+```md
 <!-- _navbar.md -->
 
 * 入门
@@ -193,7 +193,7 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 
 #### 基本用法
 * 封面的生成同样是从 markdown 文件渲染来的。开启渲染封面功能后在文档根目录创建 _coverpage.md 文件。渲染效果如本文档。
-```
+```html
 <!-- index.html -->
 
 <script>
@@ -205,7 +205,7 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 
 ```
 
-```
+```md
 <!-- _coverpage.md -->
 
 ![logo](_media/icon.svg)
@@ -225,7 +225,7 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 
 #### 自定义背景
 * 目前的背景是随机生成的渐变色，我们自定义背景色或者背景图。在文档末尾用添加图片的 Markdown 语法设置背景。
-```
+```md
 <!-- _coverpage.md -->
 
 # docsify <small>3.5</small>
@@ -240,11 +240,11 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 <!-- 背景色 -->
 
 ![color](#f0f0f0)
-
 ```
 
 #### 封面作为首页
-* 通常封面和首页是同时出现的，当然你也是当封面独立出来通过设置onlyCover 选项。
+* 通常封面和首页是同时出现的，当然你也是当封面独立出来通过设置`onlyCover`选项。
+
 
 ### 定制化
 #### 配置项
@@ -309,4 +309,13 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 需要引入 search.min.js 才会显示
+```
+
+#### 代码高亮
+* `docsify`内置的代码高亮工具是`Prism`。`Prism`默认支持的语言如下：
+```
+Markup - markup, html, xml, svg, mathml, ssml, atom, rss
+CSS - css
+C-like - clike
+JavaScript - javascript, js
 ```
