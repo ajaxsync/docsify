@@ -4,24 +4,16 @@
 * 如果没有设置自定义侧边栏，该文件的标题会显示在侧边栏
 -->
 
-# Web前端笔记
+# Web学习笔记
 
-> 你好，世界！
-```html
-<title>前端学习笔记</title>
-```
+> 一个小白的前端探索之旅
 
-```bash
-git clone aaaa
+## 起步
+* 工欲善其事，必先利其器。
+* 已经准备了，可能用到的[工具合集](https://gitee.com/ajaxsync/toolset)。`Node、git、vscode···`
 
-```
-
-```md
-# 1
-+ aa
-git clone aaaa
-
-```
+## 探索
+* 点击右上角`入门`开始学习探索之旅吧~
 <hr>
 <!-- 更新日期 -->
 Powered by docsify
