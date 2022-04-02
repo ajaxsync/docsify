@@ -4,7 +4,6 @@
 * [HTML](html/hello)  访问的是 html文件夹中的 hello文件夹的 README.md文件
  -->
 
-* [Welcome](base/)
 * [HTML](base/html/)
 * [CSS](base/css/)
 * [JS](base/js/)

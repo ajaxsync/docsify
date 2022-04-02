@@ -13,7 +13,7 @@
 * 已经准备了，可能用到的[工具合集](https://gitee.com/ajaxsync/toolset)。`Node、git、vscode···`
 
 ## 探索
-* 点击右上角`入门`开始学习探索之旅吧~
+* 从[HTML](./base/html/README.md)开始学习探索之旅吧~
 <hr>
 <!-- 更新日期 -->
 Powered by docsify
