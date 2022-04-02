@@ -1,9 +1,9 @@
-* [首页](/)
+<!-- * [首页](/) -->
 
-* 入门
+<!-- * 入门
   * [HTML](base/html/README.md)
   * [CSS](base/css/README.md)
-  * [JS](base/js/README.md)
+  * [JS](base/js/README.md) -->
 
 <!-- * 进阶
   * [配置项](zh-cn/configuration.md)
