@@ -1,5 +1,5 @@
 # Docsify搭建教程
-* 本项目是基于 [docsify](https://docsify.js.org/#/zh-cn/) 搭建。
+* 本项目是基于 [docsify](https://docsify.js.org/#/zh-cn/) 搭建，也可[参考](https://gitee.com/shafish/docsify-reference/tree/master)
 
 ## 搭建步骤
 ### 准备工作
@@ -111,8 +111,8 @@ docs/zh-cn/guide.md   => http://domain.com/zh-cn/guide
 <script>
   window.$docsify = {
     loadSidebar: true,
-    subMaxLevel: 2    //  类型：Number  默认值: 0
-自定义侧边栏后默认不会再生成目录，你也可以通过设置生成目录的最大层级开启这个功能。
+    subMaxLevel: 2    //  类型：Number  默认值: 0 
+    // 自定义侧边栏后默认不会再生成目录，你也可以通过设置生成目录的最大层级开启这个功能。
   }
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
