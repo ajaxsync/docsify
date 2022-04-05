@@ -14,7 +14,7 @@
 
 ## 教程
 
-* NVM使用教程，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)、[GitHub](https://github.com/ajaxsync/webdocs/wiki)。
+* NodeJS使用全教程，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)、[GitHub](https://github.com/ajaxsync/webdocs/wiki)。
 
 ## 探索
 > 从[HTML](./base/html/README.md)开始学习探索之旅吧~
