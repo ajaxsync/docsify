@@ -17,7 +17,7 @@
 * NodeJS使用全教程，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)、[GitHub](https://github.com/ajaxsync/webdocs/wiki)。
 
 ## 探索
-> 从[HTML](./base/html/README.md)开始学习探索之旅吧~
+> 从[HTML](base/html/README.md)开始学习探索之旅吧~
 
 <hr>
 <!-- 更新日期 -->
