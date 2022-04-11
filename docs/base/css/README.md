@@ -141,11 +141,13 @@
 * 文字颜色  `color`
 * 背景颜色  `background-color`
 
-* 高级属性
-  - 布局,浮动`float`
-  - 间距，外间距`margin`、内间距`padding`
-  - 边框，`border`
-  - 文本，`font`、`text-decoration`、`text-indent`···
+## CSS高级属性
+* 布局，浮动`float`
+* 间距，外间距`margin`、内间距`padding`
+* 边框，`border`
+* 文本，`font`、`text-decoration`、`text-indent`···
+* 列表，`list-style`
+* 背景，`background`
 
 
 ### 浮动
@@ -188,7 +190,6 @@
 
 ### 外间距
 * 当需要的间距相对于盒子来说，是外面的时候，使用 外间距`margin`
-* 当需要的间距相对于盒子来说，是里面的时候，使用 外间距`padding`
 
 * 用法
   - 单独设置，`margin-top`、`margin-bottom`、`margin-left`、`margin-right`
@@ -222,4 +223,294 @@
 ### 内间距
 * 当需要的间距相对于盒子来说，是里面的时候，使用 内间距`padding`
 
+* 用法
+  - 单独设置，`padding-top`、`padding-bottom`、`padding-left`、`padding-right`
+  - 简写`padding: 20px;`，1个值是四个方向，2个值是上下左右，3个值是上左右下，4个值是上右下左
+  - `padding`的属性值不能给负数，也不能是`auto`
 
+* **注意** `padding`是添加在盒子里面的，会把盒子撑大，解决方法:
+    - 在设置宽度或者高度上减去添加的`padding`值
+    - 给当前的盒子添加`box-sizing: border-box;`设置为怪异盒子
+
+
+### 边框属性
+* 单独设置
+  - 边框宽度`border-width`
+  - 边框颜色`border-color`
+  - 边框线型号`border-style`，实线`solid`、虚线`dashed`、点状线`dotted`、双线`double`
+
+
+* 简写
+  - 全边框设置，顺序可换。
+```
+  border: 边框颜色 边框宽度 边框线型;
+```
+  - 单独设置
+```
+  border-top: 1px solid blue;
+  border-bottom: 1px solid blue;
+  border-left: 1px solid blue;
+  border-right: 1px solid blue;
+```
+
+
+### 文本属性
+
+#### 文字大小
+* 浏览器默认的大小 `font-size: 16px;`
+  - `1em=16px`
+  - `12pt=16px`
+
+* 设置文字大小 &lt; 12px
+  - 先设置文字大小的2倍，如：`font-size: 20px;`
+  - 将字体缩放0.5倍，`transform: scale(0.5);`，可得到`10px`的字体
+
+
+#### 文字颜色
+```html
+  color: red; <!-- 颜色名字 -->
+  color: #ff734c; <!-- 十六进制 -->
+  color: #ff734c; <!-- 十六进制 -->
+  color: rgba(255,0,0,0.5); <!-- rgb/rgba  a:alpha 透明度 -->
+```
+
+
+#### 文字字体
+* 如果书写多个字体，首先解析第1个
+* 第1个没有，会解析第2个，依次类推，如果都没有解析默认的
+  - 谷歌和火狐浏览器默认字体是`微软雅黑`
+  - `IE`以及其他浏览器默认是`宋体`
+
+```html
+  font-family: "楷体", "宋体"; <!-- 十六进制 -->
+```
+
+
+#### 字体加粗
+* 单词
+```html
+  font-weight: bolder;  <!-- 加粗程度比较大 -->
+  font-weight: bold;    <!-- 加粗 -->
+  font-weight: normal;  <!-- 不加粗 -->
+```
+
+* 数字
+```html
+  font-weight: 100-500;  <!-- 不加粗 -->
+  font-weight: 600-900;  <!-- 加粗 -->
+```
+
+
+#### 倾斜
+```html
+  font-style: normal;   <!-- 不倾斜 -->
+  font-style: italic;   <!-- 倾斜 -->
+  font-style: oblique;  <!-- 倾斜 -->
+```
+
+
+#### 水平对齐
+* 通用
+
+```html
+  text-align: left; <!-- 水平靠左 -->
+  text-align: right; <!-- 水平靠右 -->
+  text-align: center; <!-- 水平靠中 -->
+  text-align: justify; <!-- 水平两端对齐，只对多行起作用 -->
+```
+
+* 设置最后一行的对齐方式
+
+```html
+  text-align-last: left;     <!-- 水平靠左 -->
+  text-align-last: right;    <!-- 水平靠右 -->
+  text-align-last: center;   <!-- 水平靠中 -->
+  text-align-last: justify;  <!-- 水平两端对齐，只对最后一行起作用，仅一行也行 -->
+```
+
+
+#### 行高
+* 可以设置文本垂直的位置
+* 用法：`line-height: 300px;`、`line-height: 4;`、`line-height: 500%;`
+  
+* `line-height: 300px;`
+  - 如果没有`height`，直接书写`line-height`，可以实现单行文本在容器内部是垂直居中
+  - 如果有`height`，再书写`line-height`
+    - `line-height` = `height`，单行文本垂直居中
+    - `line-height` &gt; `height`，单行文本垂直居下
+    - `line-height` &lt; `height`，单行文本垂直居上
+
+* `line-height: 4;`，这里的数字，意思是几倍，是相对于`font-size`
+  - 假如`font-size: 20px; line-height: 4;`，就等于`line-height: 80px;`
+  - **常用`line-height: 1;`，可以用来清除文字垂直的间距**
+
+* `line-height: 500%;`，这里的百分比，意思是几倍，是相对于`font-size`
+  - 假如`font-size: 20px; line-height: 400%;`就等于`line-height: 80px;`
+
+
+#### font简写
+* 顺序需要保持一致
+
+```html
+  <!--     样式   粗细  字体大小/行高  种类 -->
+    font: italic  800  30px/100px   "楷体";
+```
+
+* 必须同时指定`font-size`和`font-family`才可以
+* `font-size`和`line-height`用/隔开
+	
+
+#### 文本修饰
+
+```html
+  text-decoration: none;          <!-- 没有修饰，常用于给a去除下划线 -->
+  text-decoration: underline;     <!-- 下划线 -->
+  text-decoration: overline;      <!-- 上划线 -->
+  text-decoration: line-through;  <!-- 删除线 -->
+```
+
+
+#### 首行缩进
+* 只对第1行起作用，可以给负数
+
+```html
+text-indent: 2em; <!-- 永远缩进2个文字 -->
+```
+
+
+#### 字词间距
+
+```html
+  letter-spacing  <!-- 字间距 -->
+  word-spacing    <!-- 词间距 -->
+```
+
+
+
+### 列表属性
+* 单独写
+  - 定义列表符号的样式 `list-style-type: disc;`，可选值：`circle`、`square`、`none`
+  - 定义列表符号为图片 `list-style-image: url();`
+  - 定义列表符号的位置 `list-style-position: outside;`，可选值：`inside`
+
+* 简写
+  - **`list-style: none;`，去除列表符号样式，去除小黑点**
+
+
+### 背景属性
+* 背景颜色 `background-color`
+* 背景图片 `background-image: url();`
+  - 特点：默认情况下是，平铺的
+  - 默认情况下，显示的范围是由容器大小决定的
+    - 背景图的大小 = 容器的大小，能看到一张完整的背景图
+    - 背景图的大小 &gt; 容器的大小，能看到部分背景图
+    - 背景图的大小 &lt; 容器的大小，能看到很多张背景图
+  - 背景图不占位置
+
+* 背景图的平铺设置
+  - `background-repeat: repeat;`，默认是平铺
+  - 可选值：不平铺`no-repeat`、水平平铺`repeat-x`、垂直平铺`repeat-y`
+
+* 背景图的位置
+  - 格式：`background-position: 水平 垂直;`
+  - 属性为单词
+  ```html
+    background-position: left/right /center  top/bottom/center;
+  ```
+
+  - 属性为数字+单位
+    - 单位是px，用于调整雪碧/精灵图
+    ```html
+    <!-- X正半轴是+ 负半轴是-   Y正半轴是- 负半轴是+ -->
+      background-position: 20px  40px; 
+      background-position: -20px  -40px;
+    ```
+
+    - 单位是%，这里的百分比，是容器的一半 - 图片的一半
+    ```html
+      background-position: 50% 50%;  <!-- 图片可以居中显示 -->
+    ```
+
+* 背景图的依附
+  - `background-attachment: scroll;` 默认值，背景图随着滚动条移动
+  - 可选值：`fixed` 固定之后，就相对于浏览器窗口了，但背景图的显示范围还是容器本身
+
+* 简写
+```html
+  background: red url()  left center fixed;
+```
+
+
+## 文本溢出
+* 单行文本溢出显示省略号，还需定义
+```html
+  width: 15px;               <!-- 设置范围 -->
+  white-space: nowrap;        <!-- 设置文本强制单行显示 -->
+  overflow: hidden;           <!-- 溢出隐藏 -->
+  text-overflow: ellipsis;    <!-- 设置省略号 -->
+```
+
+* `text-overflow: ellipsis;` ，<span style="color: #ff734c;">CSS3<sup style="color: red;">新增</sup></span>
+  - 默认 `clip`，不显示省略号，而是简单的裁切
+  - 可选值 `ellipsis`，当单行文本溢出时，显示省略号
+
+* `white-space: nowrap;`，设置空白的显示效果，<span style="color: #ff734c;">CSS3<sup style="color: red;">新增</sup></span>
+
+![white-space](img/white-space.png)
+
+* `overflow: hidden;`，<span style="color: #ff734c;">CSS3<sup style="color: red;">新增</sup></span>
+  - 除了可以溢出隐藏之外，还可以利用它解决高度塌陷问题/margin-top的传递/margin的上下重叠问题
+
+![overflow](img/overflow.png)
+
+
+### 拓展：多行文本溢出
+```html
+  -webkit-line-clamp: 3;         <!-- 设置要在第几行显示省略号 --> 
+  overflow: hidden;              <!-- 溢出内容为隐藏 -->
+  display: -webkit-box;          <!-- 配合弹性盒子使用，将对象作为弹性伸缩盒子模型显示 --> 
+  -webkit-box-orient: vertical;  <!-- 配合弹性盒子使用，设置或检索伸缩盒对象的子元素的排列方式  -->  
+```
+
+
+## 书写页面的准备工作
+* 前期准备
+  - 先确定版心
+  - 按需创建`HTML`、`CSS`、`JS` 文件及文件夹
+
+* 代码准备
+
+```html
+* {margin: 0; padding: 0;}          <!-- 清除默认样式 -->
+list-style: none;                   <!-- 清除列表符号 -->
+text-decoration: none;              <!-- 去除a标签下划线 -->
+
+form { 
+  border: 0;                        <!-- 表单控件，自带2px的边框 -->
+  outline:none;                     <!-- 表单控件点击后，有黑色边框  -->
+  ::-webkit-input-placeholder{}     <!-- 表单控件， 修改placeholder的样式  -->
+  float: left;                      <!-- 表单控件敲回车之后，水平之间有空格，添加浮动 -->
+ }
+```
+
+* 更多页面的书写细节、CSS属性的继承等，请参阅`CSS拓展`之[页面书写指南](base/css/ext.md)
+
+## 部分标签不支持CSS属性
+* `span`、`a`、`b`等，设置`宽高`和`margin上下`无效
+* 原因是因为该标签本质是行内元素，就不支持以上的属性。
+  - 给这些标签添加display:block;给转换一下
+  - 给这些标签添加浮动，慎用。
+
+
+
+## 继续探索
+> [首页](/)<br/>
+> [HTML](/base/html/)<br/>
+> [JavaScript](/base/js/)
+
+
+<hr>
+<!-- 更新日期 -->
+
+Powered by [docsify](https://docsify.js.org/) <span>|</span>
+Update: {docsify-updated} 
