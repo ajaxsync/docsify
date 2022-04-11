@@ -22,6 +22,6 @@
 <hr>
 <!-- 更新日期 -->
 
-Powered by [docsify](https://docsify.js.org/) <span>|</span> Update: 
-{docsify-updated} 
+Powered by [docsify](https://docsify.js.org/) <span>|</span> 
+Update: {docsify-updated} 
 
