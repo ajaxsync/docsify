@@ -254,11 +254,14 @@
   <input  type=""  name=""  value="" placeholder=""/>
 ```
 
+## 继续探索
+> [首页](/)<br/>
+> [CSS](/base/css/)<br/>
+> [JavaScript](/base/js/)
+
 
 <hr>
 <!-- 更新日期 -->
 
-[首页](ajaxsync.github.io/webdocs)
-<br/>
 Powered by [docsify](https://docsify.js.org/) <span>|</span>
 Update: {docsify-updated} 
