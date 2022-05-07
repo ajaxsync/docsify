@@ -25,8 +25,10 @@
 
 * NodeJS使用全教程，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)、[GitHub](https://github.com/ajaxsync/webdocs/wiki)。
 
+* Git使用指南[Gitee](https://gitee.com/ajaxsync/toolset/wikis/Git%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
 
-
+## QA
+> 温故而知新，[去看看](base/QA/) <sup style="color: red;">新</sup>
 
 <hr>
 <!-- 更新日期 -->
