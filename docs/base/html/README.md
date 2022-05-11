@@ -255,9 +255,7 @@
 ```
 
 ## 继续探索
-> [首页](/)<br/>
-> [CSS](/base/css/)<br/>
-> [JavaScript](/base/js/)
+>  [首页](/) | [HTML](/base/html/) | [CSS](/base/css/) | [JavaScript](/base/js/) | [QA](/base/QA/)
 
 
 <hr>

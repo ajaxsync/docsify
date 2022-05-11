@@ -11,24 +11,29 @@
 
 ## 起步
 
-* 工欲善其事，必先利其器。查看工具集[toolset](https://gitee.com/ajaxsync/toolset)
+> 工欲善其事，必先利其器。
+* 查看常用的工具合集 [toolset](https://gitee.com/ajaxsync/toolset)
 
 
 ## 探索
+
+> 行为、表现、结构
 * [HTML](base/html/)
 * [CSS](base/css/)
 * [JavaScript](base/js/)
 
 
 
-## 教程
+## 教程指南
 
-* NodeJS使用全教程，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)、[GitHub](https://github.com/ajaxsync/webdocs/wiki)。
-
-* Git使用指南[Gitee](https://gitee.com/ajaxsync/toolset/wikis/Git%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
+> 包写不包会，仅供参考
+* Node包管理指南，[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)
+* Git使用指南[Gitee](https://gitee.com/ajaxsync/toolset/wikis/)
 
 ## QA
-> 温故而知新，[去看看](base/QA/) <sup style="color: red;">新</sup>
+> 温故而知新
+
+JavaScript复习中，[去看看](base/QA/) <sup style="color: red;">新</sup>
 
 <hr>
 <!-- 更新日期 -->

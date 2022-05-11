@@ -6,4 +6,14 @@
 -->
 
 # 提示
-> `JavaScript`，暂未建设，敬请期待···
+> `JavaScript`，建设筹划中，敬请期待···
+
+* 要不你去看看[QA](/base/QA/)
+
+
+>  [首页](/) | [HTML](/base/html/) | [CSS](/base/css/) | [JavaScript](/base/js/) | [QA](/base/QA/)
+<hr>
+<!-- 更新日期 -->
+
+Powered by [docsify](https://docsify.js.org/) <span>|</span> 
+Update: {docsify-updated} 

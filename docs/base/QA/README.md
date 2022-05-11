@@ -885,6 +885,15 @@ this
 #### 字符串的常用方法
 ```js
 
+
+
 ```
 
 
+>  [首页](/) | [HTML](/base/html/) | [CSS](/base/css/) | [JavaScript](/base/js/)
+
+<hr>
+<!-- 更新日期 -->
+
+Powered by [docsify](https://docsify.js.org/) <span>|</span> 
+Update: {docsify-updated} 

@@ -6,7 +6,5 @@
 
 * [HTML](base/html/)
 * [CSS](base/css/)
-* [JS](base/js/)
-
-
-
+* [JavaScript](base/js/)
+* [QA](base/QA/)

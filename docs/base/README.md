@@ -6,4 +6,12 @@
 -->
 
 # 提示
-> 哦吼！这里暂未建设···[戳我](/)送你回去。
+> 哦吼！你怎么会找到这里的？这里暂未建设···[戳我](/)送你回去。
+
+
+>  [首页](/) | [HTML](/base/html/) | [CSS](/base/css/) | [JavaScript](/base/js/) | [QA](/base/QA/)
+<hr>
+<!-- 更新日期 -->
+
+Powered by [docsify](https://docsify.js.org/) <span>|</span> 
+Update: {docsify-updated} 
