@@ -6,14 +6,13 @@
 ## 常用方法封装
 
 ```js
-// ====================== 随机生成一些的方法  ======================
-
-// 生成任意两个数之间的随机数 
+// ==========  生成任意两个数之间的随机数  =========
 function getRand(min, max) {
     return parseInt(Math.random() * (max - min + 1)) + min;
 }
 
-// 生成一个随机的颜色值 十六进制
+
+// ==========  生成一个随机的颜色值 十六进制  =========
 function getColor(){
     var str = "#";
     for(var i=1;i<=6;i++){
@@ -24,7 +23,8 @@ function getColor(){
     return str;
 }
 
-// 生成一个随机的颜色值 RGB
+
+// ==========  生成一个随机的颜色值 RGB  =========
 function randRgb(){
     return Math.floor(Math.random()*256); // 随机生成 0-255的数
 }
@@ -33,8 +33,7 @@ function getColorRgb(){
     return rc
 } 
 
-
-// 生成n位纯数字的随机验证码  ======================
+// ==========  生成n位纯数字的随机验证码   =========
 function getRandCode(n) {
     var num = "";
     for(var i=0; i<n; i++){
@@ -44,9 +43,7 @@ function getRandCode(n) {
 }
 
 
-// ====================== 获取数据的方法  ======================
-
-// 获取元素的样式(行内+非行内)
+// ==========  获取元素的样式(行内+非行内)   =========
 /* 
     @elem 要获取样式的某个元素
     @attr 元素的某个css属性，width、color
@@ -69,12 +66,11 @@ function getStyle(elem, attr){
 getStyle(box, 'color')  // 获取 box盒子的 color属性
 
 
-
-// 万能检测数据类型 
+// ==========  万能检测数据类型   =========
 /* 
     检测数据类型，简单、复杂
     @variable 是一个数据
-    @return  返回的是一个字符串类型  'string' 'number' 'boolean' 'function'...
+    @return  返回的是字符串类型  'string' 'number' 'boolean' 'function'...
 */
 function checkType(variable){
     if(typeof variable === 'object'){
@@ -94,8 +90,8 @@ function checkType2(variable){
 }
 
 
-// 判断arr里面是否存在num这个元素
-function hasArr(arr, num){
+// ==========  判断arr里面是否存在num这个元素   =========
+function isInArr(arr, num){
     for(var i=0; i<arr.length; i++){
         if(arr[i]==num){
             return true;
@@ -104,8 +100,7 @@ function hasArr(arr, num){
     return false;
 }
 
-// 判断arr里面是否存在num这个元素  使用indexOf
-function isInArr(arr, ele) {
+function isInArr1(arr, ele) {
     if(arr.indexOf(ele) != -1) {
         return true;
     }else {
@@ -113,7 +108,7 @@ function isInArr(arr, ele) {
     }
 }
 
-// 判断一个对象是否为空对象
+// ==========  判断一个对象是否为空对象   =========
  function isEmptyObj(obj) {
     let flag = true
     for (let key in obj) {
@@ -123,14 +118,15 @@ function isInArr(arr, ele) {
     return flag
 }
 
-
-// 获取页面滚动的距离
+// ==========  获取页面滚动的距离   =========
 function getScroll(){
     return {
         top:window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop, //向上滚动的距离
         left:window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft //向左滚动的距离
     }
 }
+
+
 
 ```
 
