@@ -754,6 +754,16 @@ JS数据类型分类：
         }
     }
 
+    >> 也可以使用 for in 循环，但要注意类型转换
+    var arr = [3,1,5,6,9,7,2,8]
+    for(var i in arr){
+        var k = Number(i)  // i 是字符串类型，将其转为数值类型
+        if(num[k]>num[k+1]) {
+             var temp = arr[k];
+            arr[k] = arr[k+1];
+            arr[k+1] = temp;
+        }
+    }
 
 选择排序：
     - 先假设最小元素的索引，如果有一个元素的索引比自己小，就替换原先的索引
@@ -884,10 +894,213 @@ this
 
 #### 字符串的常用方法
 ```js
+【ES3】
+    1 charAt
+        + 作用:从一个字符串中返回指定索引位置的字符
+        + 语法：str.charAt(索引)
+        + 返回值：指定索引位置的字符，没有找到返回空字符串
 
+    2 charCodeAt
+        + 作用:从一个字符串中返回指定索引位置的字符编码
+        + 语法：str.charCodeAt(索引)
+        + 返回值：指定索引位置的字符编码，没有找到返回 NaN
+
+    3 indexOf
+        + 作用:返回第一次出现的字符的索引
+        + 语法:str.indexOf(字符)
+        + 返回值:字符的索引，没找到返回-1
+
+    4 substring
+        + 作用:返回一个字符串在开始索引到结束索引之间的一个子集
+        + 语法:str.substring(startIndex[,endIndex])
+            ==> 返回startIndex到endIndex之间的一个子集，不包括endIndex
+            ==> 省略endIndex，返回从开始索引直到字符串的末尾的一个子集
+        + 返回值:一个字符串，是被截取的部分，不会改变原字符串
+
+    5 substr [官网即将废弃，不推荐使用]
+        + 作用:返回一个字符串中从指定位置开始到指定字符数的字符
+        + 语法:str.substr(startIndex[,length])
+            ==> startIndex：可以是负数，表示倒数第几个
+            ==> length:表示截取多少个，如果省略表示截取到最后一个字符
+        + 返回值:一个字符串
+
+    6 slice
+        + 作用:提取某个字符串的一部分
+        + 语法:str.slice(startIndex[,endIndex])
+            ==> 返回startIndex到endIndex之间的一个子集，不包括endIndex
+            ==> 省略endIndex,返回从开始索引直到字符串的末尾的一个子集
+            ==> 可以取负数，表示倒数第几个，但startIndex<endIndex，如:(-5,-3)，否则结果为空
+        + 返回值：返回一个新的字符串，且不会改变原字符串。
+        + 可以实现"掐头去尾"的功能
+            var str = '012345678'
+            console.log(str.slice(1,-1)); // 1234567
+
+    7 toLowerCase和toUpperCase
+        + 作用：
+            ==> toLowerCase:转小写
+            ==> toUpperCase:转大写
+        + 语法:
+            str.toLowerCase()
+            str.toUpperCase()
+        + 返回值:
+            ==> toLowerCase:全小写的字符串
+            ==> toUpperCase:全大写的字符串
+
+    8 String.fromCharCode
+        + 作用:由指定的字符编码创建的字符
+        + 语法:String.fromCharCode(字符编码)
+        + 返回值：创建好的字符
+
+        console.log(String.fromCharCode(90));  // Z
+
+```
+
+### Math与Date
+```js
+Math是js的一个内置对象，提供了一些操作"数字"的方法
+Date是js的一个内置对象，提供了一些操作"时间"的方法
+
+
+Math相关方法
+Math不是内置构造函数
+
+    1 random
+        + 作用:返回0-1之间的随机数字
+        + 语法:Math.random()
+        + 返回值:0-1之间的随机数字,不包括1
+
+    2 round
+        + 作用:返回一个小数"四舍五入"变成一个整数
+        + 语法:Math.round(数字)
+        + 返回值:四舍五入变成的整数
+        + 注意：四舍五入如果是0.5，按照正无穷方向取舍
+            - Math.round(7.5) // 8
+            - Math.round(-7.5) // -7
+
+    3 abs
+        + 作用:取一个数字的绝对值
+        + 语法:Math.abs(数字)
+        + 返回值:指定数字的绝对值
+
+    4 ceil
+        + 作用:将一个小数向上取整
+        + 语法:Math.ceil(小数)
+        + 返回值：向上取整的整数
+
+    5 floor
+        + 作用:将一个小数向下取整
+        + 语法:Math.floor(小数)
+        + 返回值：向下取整的整数
+
+    6 max
+        + 作用:求几个数的最大值
+        + 语法:Math.max(num1,num2,num3,....)
+        + 返回值：最大的那个数字
+
+    7 min
+        + 作用:求几个数的最小值
+        + 语法:Math.min(num1,num2,num3,....)
+        + 返回值：最小的那个数字
+
+    8 PI
+        + 作用:圆周率
+        + 语法:Math.PI
+        + 返回值：圆周率
+
+    9 pow
+        + 作用：求一个数的n次方
+        + 语法:Math.pow(x,n)
+        + 返回值：x的n次方
+
+    补充：
+        + 如何保留两位小数？
+        var num = Math.random()*10 // 随机生成 1-10 的随机数
+        num.toFixed(2)  // 保留两位小数 发生隐式类型转换 是string类型
+
+
+Date相关方法
+
+Date是js的内置构造函数，new Date()
+
+* 不传递参数，默认返回当前时间
+    var d = new Date() // Thu May 12 2022 16:49:36 GMT+0800 (中国标准时间)
+
+* 传入一个字符串参数，返回你传递进入的时间
+    new Date('2022/05/12 14:00')
+    new Date('2022-5-12 14:00')
+    new Date('2022.05.12')
+
+* 传多个参数，代表 年月日时分秒
+    + 两个参数：第一个表示年，第二个表示月
+    + 三个参数: 第一个表示年，第二个表示月，第三个表示日
+    + 四个参数: 第一个表示年，第二个表示月，第三个表示日，第四个表示小时
+    + 五个参数: 第一个表示年，第二个表示月，第三个表示日，第四个表示小时，第五个表示分钟
+    + 六个参数: 第一个表示年，第二个表示月，第三个表示日，第四个表示小时，第五个表示分钟,第六个表示秒
+    + 注意：月是0-11，0表示1月,11表示12月
+
+    new Date(2022,5)
+    new Date(2022,5,12)
+
+
+  + 将日期字符串格式转换成指定内容
+        * 我们得到的字符串是Thu Mar 11 2021 09:40:24 GMT+0800 (中国标准时间)
+        * 不是我想要的格式
+        * 现在js提供了一些方法可以得到里面的指定内容
+        1 getFullYear
+            + 作用:得到指定字符串中的年份
+            + 语法: date.getFullYear()
+
+        2 getMonth
+            + 作用:得到指定字符串中的月份
+            + 语法: date.getMonth()
+            + 月份是0-11
+            
+        3 getDate
+            + 作用：得到指定字符串中的日期
+            + 语法: date.getDate()
+
+        4 getDay
+            + 作用：得到指定字符串中的星期几
+            + 语法：date.getDay()
+            + 1-6表示星期一到星期六，星期天是0
+
+        5 getHours
+            + 作用：得到指定字符串中的小时
+            + 语法: date.getHours()
+
+        6 getMinutes
+            + 作用：得到指定字符串中的分钟
+            + 语法：date.getMinutes()
+
+        7 getSeconds
+            + 作用：得到指定字符串中的秒
+            + 语法：date.getSeconds()
+
+        8 getTime()
+            + 作用：得到指定时间到格林威治时间的毫秒数
+            + 1s = 1000ms
+            + 格林威治时间：1970-1-1 00:00:00 
+    
+    获取时间差
+        * 是指获取两个时间点之间相差的时间
+        * 计算现在距离劳动节放假还有多久
+        * var d1 = new Date()
+        * var d2 = new Date('2021/5/1')
+        * 两个时间点可以相减吗?
+        * 不能直接相减，要: d2.getTime()-d1.getTime()
+        * 但是:把时间对象 d 转number类型，相当于调用了 d.getTime()
+        * 所以:d2.getTime()-d1.getTime() 可简写为: d2 - d1 [减法会隐式转换]
+        * 得到的就是两个时间对象之间的时间差，单位是毫秒
+```
+* 封装了一些常用方法，[publicTools](base/QA/publicTools.md)
+
+
+### BOM
+```js
 
 
 ```
+
 
 
 >  [首页](/) | [HTML](/base/html/) | [CSS](/base/css/) | [JavaScript](/base/js/)
