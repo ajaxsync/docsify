@@ -23,7 +23,6 @@ function getColor(){
     return str;
 }
 
-
 // ==========  生成一个随机的颜色值 RGB  =========
 function randRgb(){
     return Math.floor(Math.random()*256); // 随机生成 0-255的数
@@ -48,6 +47,7 @@ function getRandCode(n) {
     @elem 要获取样式的某个元素
     @attr 元素的某个css属性，width、color
 */
+// 方法1
 function getStyle(elem, attr){
     if(elem.style[attr]){
         // 说明该属性是在行内写的
@@ -65,6 +65,17 @@ function getStyle(elem, attr){
 }
 getStyle(box, 'color')  // 获取 box盒子的 color属性
 
+// 方法2
+function getStyle(dom, attr){
+    if(window.getComputedStyle){
+        // 非IE使用
+        return window.getComputedStyle(dom,null)[attr]
+    }else{
+        // IE使用
+        return dom.currentStyle[attr]
+    }
+}
+
 
 // ==========  万能检测数据类型   =========
 /* 
@@ -72,6 +83,7 @@ getStyle(box, 'color')  // 获取 box盒子的 color属性
     @variable 是一个数据
     @return  返回的是字符串类型  'string' 'number' 'boolean' 'function'...
 */
+// 方法1
 function checkType(variable){
     if(typeof variable === 'object'){
         // 可能是一个数组，可能是一个对象
@@ -81,6 +93,7 @@ function checkType(variable){
     }
 }
 
+// 方法2
 function checkType2(variable){
     // 变量使用object里面tostring方法
     let typeStr = Object.prototype.toString.call(variable)
@@ -91,6 +104,7 @@ function checkType2(variable){
 
 
 // ==========  判断arr里面是否存在num这个元素   =========
+// 方法1
 function isInArr(arr, num){
     for(var i=0; i<arr.length; i++){
         if(arr[i]==num){
@@ -100,6 +114,7 @@ function isInArr(arr, num){
     return false;
 }
 
+// 方法2
 function isInArr1(arr, ele) {
     if(arr.indexOf(ele) != -1) {
         return true;
@@ -109,7 +124,7 @@ function isInArr1(arr, ele) {
 }
 
 // ==========  判断一个对象是否为空对象   =========
- function isEmptyObj(obj) {
+function isEmptyObj(obj) {
     let flag = true
     for (let key in obj) {
         // 如果是一个空对象不会进入里面
