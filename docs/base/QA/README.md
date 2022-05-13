@@ -1097,6 +1097,320 @@ Date是js的内置构造函数，new Date()
 
 ### BOM
 ```js
+BOM(Browser Object Model):浏览器对象模型
+
+可操作的内容：
+    * 获取浏览器的窗口大小
+        - innerWidth 获取浏览器的宽度   //  window.innerWidth
+        - innerHeight 获取浏览器的高度  //  window.innerHeight
+        - 宽度与高度是包含滚动条的  // 页面宽度/高度=内容区+滚动条宽度/高度
+        - window.onresize  // 窗口大小改变时执行
+            window.onresize = function() {
+                console.log("==窗口大小改变了==")
+                console.log("浏览器的宽度：" + window.innerWidth)
+                console.log("浏览器的高度：" + window.innerHeight)
+            }
+
+    * 操作浏览器进行页面跳转
+    * 获取浏览器地址栏的信息
+    * 操作浏览器的滚动条
+    * 获取浏览器的信息-版本信息
+    * 让浏览器出现一些弹框（alert/confirm/prompt）
+    * BOM的核心对象是window对象，里面有各种操作浏览器的方法
+
+
+浏览器的弹出层
+    1 alert:弹出提示框
+        + 语法:alert("字符串")
+        + 只能提示内容，只有一个确定按钮，点击确定，弹框消失
+    2 confirm:弹出询问框
+        + 语法:confirm("do you love me?")
+        + 点击确定，返回true
+        + 点击取消，返回false
+    3 prompt:弹出输入框
+        + 语法:prompt('输入内容提示'[,'输入框的初始值'])
+        + 点击确定，返回输入的内容，字符串格式
+        + 点击取消，返回null
+
+
+浏览器的地址信息
+    + window里面有一个对象location
+    + 专门用来存储浏览器地址栏信息
+
+    location.href
+        + 该属性是专门存储浏览器地址栏的url信息
+        + 会把中文变成url编码格式
+        + encodeURI('源代码')  // 将中文转为url编码
+        + decodeURI('%E6%BA%90%E4%BB%A3%E7%A0%81')  // 将url编码转为中文
+    location.reload
+        + 这个方法可以重新加载一次页面，就是刷新页面
+        + 不要写在全局，不然浏览器会一直处在刷新状态
+    location.assign
+        + 这个方法可以加载指定页面
+        + 原页面会保留在历史记录
+    location.replace
+        + 这个方法可以加载指定页面来替换本页面
+        + 原页面不会保留在历史记录
+
+特殊含义的变量：
+    self:表示window
+    top:表示window
+    name:赋值的内容会变成字符串
+
+
+浏览器的历史记录
+    + window中有一个对象叫做history，专门存储历史记录信息的
+    1 history.back()
+        + 是用来回退历史记录的，就是回到上个页面，相当于浏览器中的⬅按钮
+    2 history.forward()
+        + 是用来前进历史记录的，就是去到下个页面，相当于浏览器中的➡按钮
+
+浏览器的版本信息
+    + window中有一个对象叫做navigator ，专门用来获取浏览器信息的，但不准确
+    + navigator.userAgent   // 获取浏览器的整体信息
+    + navigator.appName     // 获取浏览器的名称
+    + navigator.appVersion  // 获取浏览器的版本信息
+    + navigator.platform    // 获取当前计算机的操作系统
+
+
+浏览器的onload事件
+    + js代码是从上到下，按照顺序执行的
+    + 若是把js代码提前，可能会获取不到某些变量
+
+        如下代码会报错，btn is not defied
+        因为在执行到点击事件时，btn还未定义
+        <script>
+            btn.onclick = function(){
+                console.log('点击了按钮')
+            }
+        </script>
+        <button id="btn">按钮</button>
+
+    + 如果需要将js在前面写，可以使用浏览器的onload事件
+        且一个页面只能写一个 window.onload
+        <script>
+            window.onload = function () {
+                btn.onclick = function(){
+                    console.log('点击了按钮')
+                }
+            }
+        </script>
+
+
+浏览器的onscroll事件
+    + 该事件是当浏览器的滚动条（横/竖），滚动的时候触发，哪怕滚动一个像素
+    + 滚动条的滚动包含：鼠标滚轮、鼠标拖动、键盘下键等方式
+    + 前提是：页面的高度超过浏览器的窗口才会触发
+        window.onscroll = function() {
+           console.log('页面滚动了');
+       }
+
+浏览器滚动的距离
+    + 其实浏览器没有动，只不过是页面向上走了
+    + 因此，不能仅算做是浏览器的内容，其实也算是页面的内容
+    + 所以，就不使用window对象，而是使用document对象
+
+    1 scrollTop 获取的是页面向上滚动的距离
+        + 有两种获取方式
+            * document.body.scrollTop
+            * document.documentElement.scrollTop  // documentElement就是HTML标签
+        + 两个都是获取页面向上滚动的距离，区别:
+            * IE 浏览器
+                + 没有DOCTYPE声明时，用两个都行
+                + 有DOCTYPE声明时，只能用document.documentElement.scrollTop
+            * Chrome 和 FireFox
+                + 没有DOCTYPE声明时，用document.body.scrollTop
+                + 有DOCTYPE声明时，用document.documentElement.scrollTop
+            * Safari
+                + 两个都不用，使用一个单独的方法window.pageYOffset
+   
+    2 scrollLeft 获取的是页面向左滚动的距离
+        + 有两种获取方式
+            ==> document.body.scrollLeft
+            ==> document.documentElement.scrollLeft
+    
+    // 因此，可以封装一个方法，获取浏览器滚动的距离
+    function getScroll(){
+        return {
+            top:window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop, //向上滚动的距离
+            left:window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft //向左滚动的距离
+        }
+    }
+
+定时器
+    * 两种:倒计时定时器、间隔定时器
+1 倒计时定时器
+    * 倒计时多少时间以后执行函数
+    * 语法:setTimeout(要执行的函数, 多长时间以后执行)
+    * 在你设定的时间以后，执行函数
+    * 时间按照毫秒计算，1000就是1秒，且仅执行1次
+    * 返回值:你定义的定时器是第几个定时器，数值类型
+
+2 间隔定时器
+    * 每间隔多少时间就执行一次函数
+    * 语法:setInterval(要执行的函数，间隔多少时间)
+    * 时间按照毫秒计算
+    * 返回值:你定义的定时器是第几个定时器，数值类型
+    * 只要不关闭，会一直执行
+
+3 关闭定时器
+    * timerId 其实就是某个定时器的返回值
+    * 使用timerId 作为参数来关闭定时器
+    * 两个方法:
+        + clearTimeout(timerId)  // 关闭setTimeout定义的定时器
+        + clearInterval(timerId) // 关闭setInterval定义的定时器
+    * 关闭以后，定时器就不会执行
+
+```
+
+
+### DOM
+```js
+DOM(Document Object Model): 文档对象模型
+
+拥有操作html中的标签的一些能力：
+    + 获取一个元素
+    + 移除一个元素
+    + 创建一个元素
+    + 添加一个元素
+    + 给元素绑定事件
+    + 获取元素的属性
+    + 给元素添加一些css样式
+    + 获取元素的css样式
+    + ...
+
+
+DOM的核心对象是：document对象，里面有各种操作元素的各种方法
+DOM：是页面中的标签，我们通过js获取以后，就把这个对象叫做：DOM对象
+
+
+获取元素
+    1 getElementById
+        * 通过标签的id名称获取，id是唯一的，所以获取的是一个元素
+
+    2 getElementsByClassName
+        * 通过标签的类名获取，元素的class名称可能有多个相同，所以获取的是一组元素
+        * 即使获取的class只有一个，也是一组元素，只不过这一组中只有一个DOM元素而已
+        * 获取的是一组元素，是一个长得和数组一样的数据结构，但不是数组，是伪数组
+        * 这组数据也是按照索引排列的，所以要准确的拿到某个元素，需要用索引来获取
+
+    3 getElementsByTagName
+        * 通过标签名获取，元素标签名可能有多个元素，所以获取的是一组元素
+        * 即使获取的标签名只有一个，也是一组元素，只不过这一组中只有一个DOM元素而已
+        * 和getElementsByClassName一样，获取的是一组元素，是一个长得和数组一样的数据结构，但是不是数组，是伪数组
+        * 这组数据也是按照索引排列的，所以要准确的拿到某个元素，需要用索引来获取
+
+    4 querySelector
+        * 按照选择器的方式获取元素，按照写css的方式来获取
+        * 该方法只能获取到一个元素，是页面中第一个满足条件的元素
+
+    5 querySelectorAll
+        * 按照选择器的方式获取元素，按照写css的方式来获取
+        * 该方法能够获取到一组元素，是页面中所有满足条件的元素
+    
+    // 打印获取的元素信息
+    console.log(oneLi); // 打印的是获取到的标签
+    console.dir(oneLi); // 打印的是详细信息，标签这个对象(键值对)
+
+
+操作元素
+    * 通过各种获取元素的方式，获取到页面中的标签
+    * 然后，直接操作DOM元素的属性
+    
+    1 innerHTML
+        * 获取 元素内部的html结构
+        * 设置 元素内部的html结构
+    
+    2 innerText
+        * 获取 元素内部的文本（只能获取到文本内容，获取不到html标签）
+        * 设置 元素内部的文本
+    
+    3 getAttribute
+        * 获取 元素标签上的某个属性（包括自定义属性）
+    
+    4 setAttribute
+        * 设置 元素标签上的某个属性（包括自定义属性）
+   
+    5 removeAttribute
+        * 删除 元素标签上的某个属性（包括自定义属性）
+    
+    6 样式
+        * 元素.style.样式名 = "具体的值"
+    
+    7 className
+        * 设置元素类名
+        * 元素.className = "类名1 类名2"
+
+
+操作节点
+    DOM是我们html结构中一个一个的节点构成的
+    标签、文本内容、注释，包括空格都是节点
+
+DOM节点分类：
+    * 元素节点  // 通过getElement...获取的
+    * 属性节点  // 通过getAttribute获取的
+    * 文本节点  // 通过innerText获取的
+
+
+获取节点
+    1 childNodes: 获取某一个节点下所有的子一级节点
+        * 拿到的是一个伪数组，里面有多个节点
+        * 里面可以看到不同种类的节点
+
+          var oDiv = document.getElementsByTagName('div')
+          oDiv.childNodes  // 获取到div下的所有的子一级节点
+
+    2 children: (重点) 获取某一个节点下所有的子一级"元素节点"
+        * 拿到的是一个伪数组，里面只有元素节点
+    
+    3 lastChild: 获取某一节点子一级的最后一个节点
+        * 只获取到一个节点，不是伪数组
+        * 获取的是子一级的最后一个节点
+    
+    4 firstChild: 获取某一节点子一级的第一个节点
+        ==> 只获取到一个节点，不是伪数组
+        ==> 获取的是子一级的第一个节点
+    
+    5 lastElementChild: 获取某一节点子一级的最后一个"元素节点"
+        ==> 只获取到一个"元素节点"，不是伪数组
+        ==> 获取的是子一级的最后一个"元素节点"
+    
+    6 firstElementChild: 获取某一节点子一级的第一个"元素节点"
+        ==> 只获取到一个"元素节点"，不是伪数组
+        ==> 获取的是子一级的第一个"元素节点"
+
+    
+    7 nextSibling: 获取某一个节点的下一个"兄弟节点"
+    8 previousSibling: 获取某一个节点的上一个"兄弟节点"
+
+    9 nextElementSibling: 获取某一个节点的下一个"兄弟元素节点"
+    10 previousElementSibling: 获取某一个节点的上一个"兄弟元素节点"
+
+    11 parentNode: (重点)获取某一个节点的"父节点"
+    12 parentElement: 获取某一个节点的"父元素节点"
+
+
+节点属性
+    * 节点类型有多种，因此能够获取到不同的节点
+
+    1 nodeType: 获取节点的节点类型，用数字表示
+        * 元素节点:1
+        * 属性节点:2
+        * 文本节点:3
+
+        console.log(oUl.nodeType)  // 1 元素节点
+    
+    2 nodeName: 获取节点名称
+        * 元素节点:大写的标签名称
+        * 属性节点:属性名
+        * 文本节点:#text
+    
+    3 nodeValue
+        * 元素节点: null，元素节点如果要获取元素内容使用:innerHTML/innerText
+        * 属性节点:属性值
+        * 文本节点:文本内容
+
+
 
 
 ```
