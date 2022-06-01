@@ -144,6 +144,7 @@ console.log(p1.sleep);  // 人都需要睡觉，7-8小时为宜。
 * 将子类的原型指向父类的实例
 * Child.prototype = new Father();
 * 缺点：子类实例若修改了方法，会影响其他子类的方法，因为共用一个地址空间
+
 ```js
 // 父类
 function Person(name){
@@ -172,6 +173,7 @@ console.log(s1);
     + 优点：可以将继承的属性直接写在自身
     + 缺点：只能继承父类函数体里的内容，不能继承父类原型上的内容
             一般指的是继承父类函数体里的属性，不能继承父类原型上的方法
+
 ```js
 // 父类
 function Person(name, gender){
@@ -198,6 +200,7 @@ var s1 = new Student(18, "小红", '女');
 * 缺点：
     + 子类自身原型上的方法，会被覆盖
     + 必须要继承以后，再为子类添加原型方法
+
 ```js
 function Person(name, gender){
     this.name = name;
@@ -224,6 +227,7 @@ var s2 = new Student(20, "小明", '男');
 ```
 
 ### ES6的类语法
+
 ```js
 // 构造函数
 function Human(name, age){
@@ -261,32 +265,33 @@ console.log(Human.abcFn);  // 使用静态方法
 #### ES6的继承
 * 可以使用`extends`关键字：`class Son extends Father{ }`
 * 继承父类使用`super`关键字：`super(name, age);`，并且必须先写
-```js
-// 父类
-class Father{
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    sayHi() {
-        console.log("Hello, my son!")
-    }
-}
 
-// 子类
-class Son extends Father{
-    constructor(gender, name, age) {
-        // 继承父类的属性，必须先写super
-        super(name, age);
-        this.gender = gender; 
+```js
+    // 父类
+    class Father{
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        sayHi() {
+            console.log("Hello, my son!")
+        }
     }
-    sayHello() {
-        console.log("Hello, my father!")
+
+    // 子类
+    class Son extends Father{
+        constructor(gender, name, age) {
+            // 继承父类的属性，必须先写super
+            super(name, age);
+            this.gender = gender; 
+        }
+        sayHello() {
+            console.log("Hello, my father!")
+        }
     }
-}
-// 实例有有父类的属性与方法
-var s1 = new Son("男", "李磊", 22)
-console.log(s1);
+    // 实例有有父类的属性与方法
+    var s1 = new Son("男", "李磊", 22)
+    console.log(s1);
 ```
 
 
