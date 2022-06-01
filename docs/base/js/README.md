@@ -45,7 +45,6 @@ function factory() {
     // 手动返回这个对象
     return obj;
 }
-
 // 外部直接使用
 var o1 = factory();
 var o2 = factory();
@@ -103,7 +102,6 @@ function Person(name, age) {
 Person.prototype.sleep = function() {
     console.log("人都需要睡觉，7-8小时为宜。");
 }
-
 // 使用构造函数
 var p1 = new Person("tim", 22);
 console.log(p1.name);   // tim
@@ -158,8 +156,7 @@ function Person(name){
 // 原型上有一个方法
 Person.prototype.sayHi = function(){
     console.log('hello world')
-}
-    
+} 
 // 2 子类
 function Student(age){
     this.age = age;
@@ -209,6 +206,7 @@ var s1 = new Student(18, "小红", '女');
     + 必须要继承以后，再为子类添加原型方法
 
 ```js
+// 父类
 function Person(name, gender){
     this.name = name;
     this.gender = gender;            
@@ -216,7 +214,7 @@ function Person(name, gender){
 Person.prototype.sayHi = function(){
     console.log('hello world');
 }
-
+//子类
 function Student(age, name, gender){
     this.age = age;
     // 先继承属性
@@ -224,7 +222,6 @@ function Student(age, name, gender){
 }
 // 再继承方法
 Student.prototype = new Person();
-
 // 添加子类自身的方法
 Student.prototype.fn = function(){
     console.log("子类自身的方法")
@@ -244,7 +241,6 @@ function Human(name, age){
 Human.prototype.eat = function(){
     console.log("一顿不吃饿得慌")
 }
-
 // ES6的类语法
 class Human{
     // 函数体内部的属性
@@ -262,7 +258,6 @@ class Human{
         console.log("Hello abcFn");
     };
 }
-
 // 实例化
 var h1 = new Human("小明", 20)
 console.log(Human.aa);  // 使用静态属性
@@ -274,37 +269,31 @@ console.log(Human.abcFn);  // 使用静态方法
 * 继承父类使用`super`关键字：`super(name, age);`，并且必须先写
 
 ```js
-    // 父类
-    class Father{
-        constructor(name, age) {
-            this.name = name;
-            this.age = age;
-        }
-        sayHi() {
-            console.log("Hello, my son!")
-        }
+// 父类
+class Father{
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
-
-    // 子类
-    class Son extends Father{
-        constructor(gender, name, age) {
-            // 继承父类的属性，必须先写super
-            super(name, age);
-            this.gender = gender; 
-        }
-        sayHello() {
-            console.log("Hello, my father!")
-        }
+    sayHi() {
+        console.log("Hello, my son!")
     }
-    // 实例有有父类的属性与方法
-    var s1 = new Son("男", "李磊", 22)
-    console.log(s1);
+}
+// 子类
+class Son extends Father{
+    constructor(gender, name, age) {
+        // 继承父类的属性，必须先写super
+        super(name, age);
+        this.gender = gender; 
+    }
+    sayHello() {
+        console.log("Hello, my father!")
+    }
+}
+// 实例有有父类的属性与方法
+var s1 = new Son("男", "李磊", 22)
+console.log(s1);
 ```
-
-
-
-
-
 
 
 
